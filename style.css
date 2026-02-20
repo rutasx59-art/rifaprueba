@@ -1,0 +1,346 @@
+:root{
+  --red:#d82121;
+  --black:#111;
+  --gray:#666;
+  --bg:#f5f5f5;
+  --white:#fff;
+  --ok:#1f9d55;
+  --bad:#d82121;
+}
+
+*{ box-sizing:border-box; font-family: system-ui, Arial, sans-serif; }
+body{ margin:0; background:var(--bg); color:#111; }
+
+.header{
+  background:#000;
+  color:#fff;
+  padding:18px 14px;
+  text-align:center;
+}
+.header h1{ margin:0; font-size:18px; letter-spacing:.4px; }
+.subtitle{ margin-top:6px; color:#ddd; font-size:12px; }
+
+.container{ max-width:1100px; margin:0 auto; padding:14px; }
+
+.top-actions{
+  display:grid;
+  grid-template-columns: 1fr;
+  gap:12px;
+}
+
+.btn{
+  border:0;
+  padding:12px 14px;
+  font-weight:700;
+  border-radius:10px;
+  cursor:pointer;
+}
+.btn-primary{ background:var(--red); color:#fff; }
+.btn-secondary{ background:#222; color:#fff; }
+.btn:disabled{ opacity:.5; cursor:not-allowed; }
+
+.selected-box{
+  background:#fff;
+  border-radius:12px;
+  padding:12px;
+  border:1px solid #e7e7e7;
+}
+.selected-title{ font-weight:800; }
+.selected-hint{ color:var(--gray); font-size:12px; margin-top:4px; }
+
+.chips{ display:flex; flex-wrap:wrap; gap:8px; margin-top:10px; }
+.chip{
+  background:#111;
+  color:#fff;
+  padding:8px 10px;
+  border-radius:10px;
+  cursor:pointer;
+  user-select:none;
+  border:1px solid #333;
+  font-weight:800;
+}
+.chip:hover{ opacity:.9; }
+
+.search-card{
+  background:#fff;
+  border-radius:12px;
+  padding:12px;
+  border:1px solid #e7e7e7;
+}
+.search-title{ font-weight:900; margin-bottom:10px; }
+.search-row{ display:flex; gap:10px; align-items:center; }
+#ticketSearch{
+  width:220px;
+  padding:12px 12px;
+  border-radius:10px;
+  border:1px solid #ccc;
+  font-size:16px;
+  letter-spacing:2px;
+}
+.search-status{ margin-top:10px; font-weight:800; }
+
+.ok{ color:var(--ok); }
+.bad{ color:var(--bad); }
+
+.grid-wrap{
+  margin-top:14px;
+  background:#fff;
+  border-radius:12px;
+  padding:12px;
+  border:1px solid #e7e7e7;
+}
+.grid-title{ font-weight:900; margin-bottom:10px; }
+
+.tickets-grid{
+  display:grid;
+  grid-template-columns: repeat(10, minmax(0, 1fr));
+  gap:8px;
+}
+
+.ticket{
+  border:2px solid var(--red);
+  border-radius:10px;
+  padding:10px 6px;
+  text-align:center;
+  font-weight:900;
+  background:#fff;
+  cursor:pointer;
+  user-select:none;
+}
+.ticket.disabled{
+  background:#111;
+  color:#fff;
+  border-color:#111;
+  cursor:not-allowed;
+  opacity:.95;
+}
+.ticket.selected{
+  outline:3px solid #000;
+}
+
+@media (max-width: 900px){
+  .tickets-grid{ grid-template-columns: repeat(6, minmax(0, 1fr)); }
+}
+@media (max-width: 520px){
+  .tickets-grid{ grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  #ticketSearch{ width:160px; }
+}
+
+/* Loader global */
+.page-loader{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.45);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  z-index:9999;
+}
+
+/* hidden debe ganar SIEMPRE */
+.hidden{ display:none !important; }
+
+.spinner{
+  width:56px;
+  height:56px;
+  border-radius:50%;
+  border:6px solid rgba(255,255,255,.35);
+  border-top-color:#fff;
+  animation:spin 1s linear infinite;
+}
+.loader-text{ color:#fff; font-weight:800; margin-top:10px; }
+
+@keyframes spin{
+  to{ transform:rotate(360deg); }
+}
+
+/* Modal base */
+.modal-overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.65);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:99999;
+}
+.modal-overlay.hidden{ display:none !important; }
+
+.modal{
+  width:min(560px, 92vw);
+  background:#fff;
+  border-radius:0;
+  padding:22px 22px 18px;
+  position:relative;
+  box-shadow:0 20px 60px rgba(0,0,0,.35);
+}
+
+.modal-close{
+  position:absolute;
+  top:0;
+  right:0;
+  width:40px;
+  height:40px;
+  background:var(--red);
+  color:#fff;
+  border:0;
+  font-weight:900;
+  cursor:pointer;
+}
+
+.modal-title{
+  text-align:center;
+  margin:22px 0 8px;
+  font-size:16px;
+  font-weight:900;
+}
+
+.modal-subtitle{
+  text-align:center;
+  font-weight:900;
+  color:#2f7d32;
+  margin-bottom:14px;
+}
+
+.modal-body{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  align-items:center;
+}
+
+.modal-input{
+  width:min(330px, 90%);
+  padding:12px 12px;
+  border:2px solid #222;
+  font-weight:800;
+  outline:none;
+}
+.modal-input:disabled{
+  opacity:.75;
+  background:#f3f3f3;
+}
+
+.modal-hint{
+  width:min(420px, 95%);
+  text-align:center;
+  font-weight:900;
+  margin-top:4px;
+}
+
+.btn-big{
+  width:min(330px, 90%);
+  padding:14px 12px;
+  border-radius:0;
+  border:2px solid #000;
+  font-size:18px;
+}
+
+/* Botón pulsando mientras aparta */
+.pulsing{
+  animation:pulse 0.9s ease-in-out infinite;
+}
+
+@keyframes pulse{
+  0%{ transform:scale(1); filter:brightness(1); }
+  50%{ transform:scale(1.02); filter:brightness(1.2); }
+  100%{ transform:scale(1); filter:brightness(1); }
+}
+
+.modal-error{
+  color:var(--red);
+  font-weight:900;
+  text-align:center;
+  min-height:18px;
+  margin-top:2px;
+}
+
+/* ✅ Botón maquinita estilo “input” (como el video) */
+.btn-maquinita{
+  width: min(520px, 92vw);
+  margin: 0 auto;
+  display:block;
+  padding:14px 12px;
+  background:#fff;
+  border:2px solid var(--red);
+  font-weight:900;
+  letter-spacing:.6px;
+  cursor:pointer;
+  text-transform:uppercase;
+}
+
+/* ✅ Modal maquinita */
+.maquinita-modal{
+  width:min(560px, 92vw);
+  background:#fff;
+  padding:22px 22px 18px;
+  position:relative;
+  box-shadow:0 20px 60px rgba(0,0,0,.35);
+}
+
+.maq-top{
+  border:2px solid var(--red);
+  border-radius:14px;
+  padding:10px 12px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  font-weight:900;
+}
+
+.maq-label{ font-size:12px; }
+.maq-select{
+  flex:1;
+  padding:8px 10px;
+  border:2px solid #3b82f6;
+  font-weight:800;
+  outline:none;
+}
+
+.maq-box{
+  margin-top:12px;
+  border:2px solid var(--red);
+  border-radius:18px;
+  height:360px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  gap:12px;
+  padding:14px;
+  cursor:pointer;
+}
+
+.maq-box-text{
+  font-weight:900;
+  text-align:center;
+}
+
+.maq-gif{
+  width:180px;
+  height:auto;
+}
+
+.maq-nums{
+  font-weight:900;
+  color:var(--red);
+  text-align:left;
+  width:100%;
+  max-height:160px;
+  overflow:auto;
+  line-height:1.25;
+}
+
+.maq-confirm{
+  margin:14px auto 0;
+  display:block;
+  width:min(360px, 92vw);
+  padding:14px 12px;
+  background:var(--red);
+  color:#fff;
+  border:2px solid #000;
+  font-weight:900;
+  cursor:pointer;
+}

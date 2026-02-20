@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Rifa Demo</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <!-- Loader global -->
+  <div id="pageLoader" class="page-loader hidden">
+    <div class="spinner"></div>
+    <div class="loader-text">Cargando…</div>
+  </div>
+
+  <header class="header">
+    <h1>HAZ CLICK ABAJO EN TU NÚMERO DE LA SUERTE</h1>
+    <div class="subtitle">Blancos: disponibles • Negros: no disponibles</div>
+  </header>
+
+  <main class="container">
+    <section class="top-actions">
+
+      <!-- ✅ BOTÓN MAQUINITA (como el video) -->
+      <button id="btnMaquinita" class="btn-maquinita">MAQUINITA DE LA SUERTE</button>
+
+      <!-- ✅ BOTÓN APARTAR -->
+      <button id="btnApartar" class="btn btn-primary">→ APARTAR ←</button>
+
+      <div class="selected-box">
+        <div class="selected-title">
+          <span id="selectedCount">0</span> BOLETOS SELECCIONADOS
+        </div>
+        <div class="selected-hint">Para eliminar haz click en el boleto</div>
+        <div id="selectedChips" class="chips"></div>
+      </div>
+
+      <div class="search-card">
+        <div class="search-title">BUSCAR BOLETO</div>
+        <div class="search-row">
+          <input id="ticketSearch" inputmode="numeric" autocomplete="off" placeholder="Escribe 5 números" maxlength="5" />
+          <button id="btnElegir" class="btn btn-secondary" disabled>ELEGIR</button>
+        </div>
+        <div id="searchStatus" class="search-status"></div>
+      </div>
+    </section>
+
+    <section class="grid-wrap">
+      <div class="grid-title">Boletos</div>
+      <div id="ticketsGrid" class="tickets-grid"></div>
+    </section>
+  </main>
+
+  <!-- ✅ MODAL APARTAR -->
+  <div id="apartarOverlay" class="modal-overlay hidden">
+    <div class="modal">
+      <button id="apartarClose" class="modal-close">X</button>
+
+      <h2 class="modal-title">LLENA TUS DATOS Y DA CLICK EN APARTAR</h2>
+      <div class="modal-subtitle"><span id="apartarPackageText">BOLETOS SELECCIONADOS</span></div>
+
+      <div class="modal-body">
+        <input id="mWhatsapp" class="modal-input" placeholder="WHATSAPP (10 DÍGITOS)" maxlength="10" />
+        <input id="mNombre" class="modal-input" placeholder="NOMBRE(S)" disabled />
+        <input id="mApellidos" class="modal-input" placeholder="APELLIDOS" disabled />
+
+        <select id="mEstado" class="modal-input" disabled>
+          <option value="">SELECCIONA ESTADO</option>
+          <option>SINALOA</option><option>SONORA</option><option>BAJA CALIFORNIA</option>
+          <option>JALISCO</option><option>CDMX</option><option>NUEVO LEON</option>
+        </select>
+
+        <div class="modal-hint ok">
+          ¡Al apartar serás redirigido a whatsapp para enviar la información de tu boleto!
+        </div>
+
+        <button id="mApartarBtn" class="btn btn-primary btn-big">APARTAR</button>
+        <div id="mError" class="modal-error"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ✅ MODAL MAQUINITA (como el video) -->
+  <div id="maquinitaOverlay" class="modal-overlay hidden">
+    <div class="maquinita-modal">
+      <button id="maquinitaClose" class="modal-close">X</button>
+
+      <div class="maq-top">
+        <div class="maq-label">BOLETOS A GENERAR:</div>
+        <select id="maqSelect" class="maq-select"></select>
+      </div>
+
+      <div id="maqBox" class="maq-box">
+        <div id="maqBoxText" class="maq-box-text">Selecciona un paquete arriba</div>
+        <img id="maqGif" src="./maquinita.gif" class="maq-gif hidden" alt="Maquinita" />
+        <div id="maqNums" class="maq-nums"></div>
+      </div>
+
+      <button id="maqConfirm" class="maq-confirm hidden">LOS QUIERO!</button>
+    </div>
+  </div>
+
+  <!-- Supabase JS -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="./app.js"></script>
+</body>
+</html>
