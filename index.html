@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorteos - Clon Visual Completo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header class="header-nav">
+        <div class="header-text mobile-only">
+            <span>MÉTODOS</span>
+            <span>DE PAGO</span>
+        </div>
+
+        <div class="logo-container">
+            <img src="logo.png" class="logo-main" alt="Logo Sorteos">
+            <img src="ok.png" class="badge-check" alt="Verificado">
+        </div>
+
+        <ul class="nav-menu desktop-only">
+            <li>Inicio</li>
+            <li>Preguntas Frecuentes</li>
+            <li>Contacto</li>
+            <li>Métodos de Pago</li>
+            <li>Verificar Boletos</li>
+        </ul>
+
+        <div class="header-text animacion-latido mobile-only">
+            <span>VERIFICA TUS</span>
+            <span>BOLETOS AQUÍ</span>
+        </div>
+    </header>
+
+    <section class="hero-banner">
+        <h1>GRAND CHEROKEE SUMMIT +<br>$30,000</h1>
+        <h2>24 DE FEBRERO 2026</h2>
+    </section>
+
+    <div class="divider">LISTA DE BOLETOS ABAJO</div>
+
+    <section class="image-container">
+        <div class="carousel-wrapper">
+            <div class="carousel-track" id="carousel-track">
+                <img src="premio1.jpeg" alt="Grand Cherokee 1">
+                <img src="premio2.jpeg" alt="Grand Cherokee 2">
+                <img src="premio3.jpeg" alt="Grand Cherokee 3">
+                <img src="premio4.jpeg" alt="Grand Cherokee 4">
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing-section">
+        1 BOLETO POR $12<br>
+        5 BOLETOS POR $60<br>
+        10 BOLETOS POR $120<br>
+        20 BOLETOS POR $240<br>
+        30 BOLETOS POR $360<br>
+        40 BOLETOS POR $480<br>
+        50 BOLETOS POR $600<br>
+        100 BOLETOS POR $1200<br>
+        200 BOLETOS POR $2400
+    </section>
+
+    <section class="rules-section">
+        <h3 class="rules-text">Con tu boleto liquidado participas por:<br><span class="text-green">GRAND CHEROKEE - 24 FEBRERO</span></h3>
+        <br>
+        <h3 class="text-red">BONO:</h3>
+        <h3 class="text-green">$30,000 EXTRAS!</h3>
+        <p class="rules-text">(VÁLIDO PAGANDO 20 BOLETOS O MÁS)<br>ACUMULABLES</p>
+        <br>
+        <h3 class="text-red">NOTA:</h3>
+        <p class="rules-text">LOS BONOS SON VÁLIDOS PAGANDO<br>DENTRO DE LOS PRIMEROS 30 MINUTOS DE<br>APARTADO Y SIN DESPRECIAR BOLETOS<br>ESTAR DENTRO DEL CANAL DE WHATSAPP<br><span class="text-green" style="text-decoration: underline; cursor: pointer;">ENTRAR AQUI</span></p>
+        
+        <p class="text-gold" style="color: #c5a434;">PARA QUE APLIQUEN LOS BONOS EN TU<br>CONCEPTO DE PAGO DEBE DE DECIR TU<br>NOMBRE Y APELLIDO<br>SI ES DEPOSITO EN OXXO, DEBE DE<br>ESCRIBIR TU NOMBRE Y NUMERO DE<br>TELEFONO</p>
+    </section>
+
+    <main class="interactive-area">
+        
+        <div class="black-top-section">
+            <div class="action-title-container">
+                <span class="triangle">▼</span>
+                <div class="action-title-text">
+                    <span>HAZ CLICK ABAJO EN TU</span>
+                    <span>NÚMERO DE LA SUERTE</span>
+                </div>
+                <span class="triangle">▼</span>
+            </div>
+        </div>
+
+        <div id="contenido-boletos">
+            
+            <div id="sticky-panel-container">
+                <button class="btn-apartar">→APARTAR←</button>
+                <div id="numeros-seleccionados"></div> 
+                <div id="contador-boletos"></div>
+                <div class="instruccion-eliminar">Para eliminar haz click en el boleto</div>
+            </div>
+
+            <div class="search-area">
+                <input type="text" id="buscador-input" class="search-input" maxlength="5" placeholder="BUSCAR">
+                
+                <div id="resultado-busqueda">
+                    <div id="estado-icono" class="estado-busqueda"></div>
+                    <div id="estado-texto" class="texto-estos-serian"></div>
+                    <button id="btn-elegir-busqueda" class="btn-elegir-verde">ELEGIR</button>
+                </div>
+
+                <button class="btn-outline" onclick="abrirModal()">MAQUINITA DE LA SUERTE</button>
+
+                <div class="legend">
+                    <div class="legend-box"></div> Blancos - Disponibles
+                </div>
+            </div>
+
+            <div class="boletos-scroll-container" id="boletos-scroll-container">
+                <div class="boletos-grid" id="grid-boletos"></div>
+            </div>
+            
+        </div>
+
+    </main>
+
+    <footer class="footer-site">
+        <div class="footer-top">
+            <a href="https://wa.me/526681245905" target="_blank" rel="noopener noreferrer">
+                <h3>PREGUNTAS AL WHATSAPP</h3>
+                <h2>(668) 124 5905</h2>
+            </a>
+        </div>
+        <div class="footer-bottom">
+            <p>Sitio desarrollado por Lotto Digital</p>
+            <a href="#">Aviso de Privacidad</a>
+        </div>
+    </footer>
+
+    <div class="modal-bg" id="modal-maquinita">
+        <div class="modal-content">
+            <button class="btn-cerrar" onclick="cerrarModal()">X</button>
+            <h3>BOLETOS A GENERAR:</h3>
+            <select class="modal-select" id="select-cantidad">
+                <option value="4">4 Boletos por $48</option>
+                <option value="5">5 Boletos por $60</option>
+                <option value="10">10 Boletos por $120</option>
+            </select>
+            
+            <img src="https://cdn-icons-png.flaticon.com/512/1055/1055673.png" class="slot-img" alt="Slot Machine">
+            
+            <button class="btn-generar" id="btn-tirar" onclick="generarAlAzar()">HAZ CLICK AQUÍ PARA GENERAR 4 BOLETOS AL AZAR!</button>
+            
+            <div id="numeros-azar"></div>
+            <button class="btn-verde-final" id="btn-aceptar-azar" onclick="cerrarModal()">¡LOS QUIERO!</button>
+        </div>
+    </div>
+
+    <a href="https://wa.me/526681245905" class="float-wa" target="_blank" rel="noopener noreferrer">
+        <img src="whatsapp.png" alt="WhatsApp">
+    </a>
+
+    <div class="float-pill-seguro" id="pill-seguro">
+        <img src="ok.png" alt="Verificado">
+        <div class="pill-text-container">
+            <span class="pill-main-text">ÉSTOS SORTEOS SON SEGUROS</span>
+            <a href="#" class="pill-sub-text">CLIC AQUÍ PARA MÁS DETALLES</a>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
